@@ -7,7 +7,7 @@
 typedef struct conversion_specifier
 {
         char *spec;
-        int (*func)(va_list);
+        int (*func)();
 } conv_spec;
 
 /* Function prototypes */
