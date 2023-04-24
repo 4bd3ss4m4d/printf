@@ -8,9 +8,9 @@
  * Return: the number of characters printed (in this case,
  * always 1)
  */
-int print_prc(void)
+int print_prc(va_list args __attribute__((unused)))
 {
-	_putchar('%');
+        _putchar('%');
 
-	return (1);
+        return (1);
 }
