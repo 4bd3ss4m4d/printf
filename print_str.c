@@ -7,8 +7,8 @@
  * @args: a va_list of arguments containing a single
  * string to be printed
  *
- * Return: the number of characters printed (always the length
- * of the string, or 6 if str is NULL)
+ * Return: the number of characters printed (in this case,
+ * always 1)
  */
 int print_str(va_list args)
 {

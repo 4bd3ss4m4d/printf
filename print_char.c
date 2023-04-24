@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
 
 /**
  * print_char - prints a single character
@@ -10,12 +9,12 @@
  * Return: the number of characters printed (in this case,
  * always 1)
  */
-int print_char(va_list va)
+int print_char(va_list args)
 {
-	char buffer[2];
+	char c;
 
-	buffer[0] = va_arg(va, int);
-	buffer[1] = '\0';
+	c = va_arg(args, int);
+	_putchar(c);
 
-	return (write(1, buffer, 1));
+	return (1);
 }
