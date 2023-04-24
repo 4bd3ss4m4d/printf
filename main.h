@@ -3,11 +3,17 @@
 
 #include <stdarg.h>
 
-/* Define a struct for the conversion specifiers */
+/**
+ * struct conversion_specifier - match the conversion
+ * specifiers for printf
+ * @spec: a string representing the conversion specifie
+ * @func: a pointer to the function that handles the conversion
+ *
+ */
 typedef struct conversion_specifier
 {
-        char *spec;
-        int (*func)(va_list);
+	char *spec;
+	int (*func)(va_list);
 } conv_spec;
 
 /* Function prototypes */
