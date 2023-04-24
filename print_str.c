@@ -7,8 +7,8 @@
  * @args: a va_list of arguments containing a single
  * string to be printed
  *
- * Return: the number of characters printed (in this case,
- * always 1)
+ * Return: the number of characters printed (always the length
+ * of the string, or 6 if str is NULL)
  */
 int print_str(va_list args)
 {
@@ -16,14 +16,11 @@ int print_str(va_list args)
 	int str_length;
 
 	str = va_arg(args, char *);
-	str_length = 0;
+	if (str == NULL)
+		str = "(null)";
 
-	while (*str != '\0')
-	{
-		_putchar(*str);
-		str_length++;
-		str++;
-	}
+	for (str_length = 0; str[str_length] != '\0'; str_length++)
+		_putchar(str[str_length]);
 
 	return (str_length);
 }
