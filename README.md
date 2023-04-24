@@ -4,4 +4,4 @@ This project is about creating a custom printf function in C, which will produce
 
 ## Contributors:
 - Abdessamad HADDOUCHE
-- 
+- Imrane ALI LAFKIH 
