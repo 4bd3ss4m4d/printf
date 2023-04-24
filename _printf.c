@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	    {"%c", print_char},
 	    {"%s", print_str},
 	    {"%%", print_prc},
-	    {"\0", NULL}};
+	    {NULL, NULL}};
 	va_list args;
 	unsigned int i, j, valid_specifier_flag, num_chars = 0;
 
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		valid_specifier_flag = 0;
-		for (j = 0; convarr[j].func != NULL; j++)
+		for (j = 0; convarr[j].spec != NULL; j++)
 		{
 			if (format[i] == convarr[j].spec[0] && format[i + 1] == convarr[j].spec[1])
 			{
