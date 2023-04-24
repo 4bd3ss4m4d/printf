@@ -7,24 +7,22 @@
  * @format: character string containing zero or more directives
  * @...: variable number of arguments to be printed
  *
- * Return: the number of characters printed (excluding the null
- * byte used to end output to strings)
+ * Return: the number of characters printed
  */
 int _printf(const char *format, ...)
 {
 	conv_spec conversions[] = {
 	    {'c', print_char},
-	    {'s', print_str},
-	    {'%', print_prc}};
-
+	    {'s', print_str}};
 	va_list args;
 	unsigned int i;
-	int num_chars = 0;
+	int num_chars = 0, valid_specifier_flag = 0;
 	size_t num_conversions = sizeof(conversions) / sizeof(conversions[0]);
 
-	/* initialize the va_list object */
-	va_start(args, format);
+	if (format == NULL)
+		return (-1);
 
+	va_start(args, format);
 	while (*format)
 	{
 		if (*format == '%')
@@ -35,18 +33,23 @@ int _printf(const char *format, ...)
 				if (*format == conversions[i].specifier)
 				{
 					num_chars += conversions[i].func(args);
+					valid_specifier_flag = 1;
 					break;
 				}
 			}
-			format++;
+			if (!valid_specifier_flag)
+			{
+				_putchar('%');
+				_putchar(*format);
+				num_chars += 2;
+			}
 		}
 		else
 		{
 			_putchar(*format);
 			num_chars++;
-			format++;
 		}
+		format++;
 	}
-
 	return (num_chars);
 }
