@@ -14,10 +14,9 @@ int _printf(const char *format, ...)
 	conv_spec conversions[] = {
 	    {'c', print_char}, {'s', print_str}, {'%', print_prc}, {'\0', NULL}};
 	va_list args;
-	unsigned int i, j;
-	int num_chars = 0, valid_specifier_flag;
+	unsigned int i, j, valid_specifier_flag, num_chars = 0;
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(args, format);
