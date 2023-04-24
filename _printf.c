@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	unsigned int i, j;
 	int num_chars = 0, valid_specifier_flag;
 
-	if (!format)
+	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
