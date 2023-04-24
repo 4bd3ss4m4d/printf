@@ -11,12 +11,13 @@
  */
 int _printf(const char *format, ...)
 {
-	conv_spec conversions[] = {{'c', print_char}, {'s', print_str}, {'\0', NULL}};
+	conv_spec conversions[] = {
+	    {'c', print_char}, {'s', print_str}, {'%', print_prc}, {'\0', NULL}};
 	va_list args;
 	unsigned int i, j;
 	int num_chars = 0, valid_specifier_flag;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
 
 	va_start(args, format);
@@ -44,9 +45,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-		{
 			num_chars += _putchar(format[i]);
-		}
 	}
 	va_end(args);
 	return (num_chars);
