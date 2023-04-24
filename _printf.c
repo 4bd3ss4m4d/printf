@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	unsigned int i, j, valid_specifier_flag, num_chars = 0;
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(args, format);
