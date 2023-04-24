@@ -6,7 +6,7 @@
 /* Define a struct for the conversion specifiers */
 typedef struct conversion_specifier
 {
-        char *specifier;
+        char *spec;
         int (*func)(va_list);
 } conv_spec;
 
