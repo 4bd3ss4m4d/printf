@@ -1,50 +1,32 @@
 #include "main.h"
 
 /**
- * print_int - prints an integer
- * @args: a va_list of arguments containing an
- * integer to be printed
+ * to_string - cast an integer to decimal
+ * @n: input number
  *
- * Return: Number of characters printed
+ * Return: string length
  */
-int print_int(va_list args)
+int to_string(const int n)
 {
-	int len = 1, m = 0;
-	unsigned int n = 0;
+	char sign = '-', digit;
 
-	n = va_arg(args, int);
-	m = n;
-
-	if (m < 0)
+	if (n < 0)
 	{
-		_putchar('-');
-		m = m * -1;
-		n = m;
-		len += 1;
+		if (n == INT_MIN)
+			return (to_string(n / 10) + to_string(-(n % 10)));
+		return (write(1, &sign, 1) + to_string(-n));
 	}
-
-	while (n > 9)
-	{
-		n = n / 10;
-		len++;
-	}
-
-	recur_int(m);
-	return (len);
+	if (n >= 10)
+		return (to_string(n / 10) + to_string(n % 10));
+	digit = '0' + n;
+	return (write(1, &digit, 1));
 }
-
 /**
- * recur_int - recursively prints an integer
- * @num: integer to print
- *
- * Return: void
+ * print_integer - print numbers
+ * @va: variadic list
+ * Return: string length
  */
-void recur_int(int num)
+int print_integer(va_list va)
 {
-	unsigned int t;
-
-	t = num;
-	if (t / 10)
-		recur_int(t / 10);
-	_putchar(t % 10 + '0');
+	return (to_string(va_arg(va, int)));
 }

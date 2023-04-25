@@ -1,25 +1,23 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdarg.h>
 
 /**
- * print_revstr -  prints a str in reverse
- * @args: a va_list
+ * _reversed_puts_recursion - check code
+ * @s: string to display
  *
- * Return: length of th estrung
+ * Return: string length
  */
-int print_revstr(va_list args)
+int _reversed_puts_recursion(char *s)
 {
-
-	char *s = va_arg(args, char *);
-	int i;
-	int j = 0;
-
-	if (s == NULL)
-		s = "(null)";
-	while (s[j] != '\0')
-		j++;
-	for (i = j - 1; i >= 0; i--)
-		_putchar(s[i]);
-	return (j);
+	if (*s == '\0')
+		return (0);
+	return (_reversed_puts_recursion(s + 1) + write(1, s, 1));
+}
+/**
+ * print_reversed_string - check code
+ * @va: variadic list
+ * Return: string length
+ */
+int print_reversed_string(va_list va)
+{
+	return (_reversed_puts_recursion(va_arg(va, char *)));
 }

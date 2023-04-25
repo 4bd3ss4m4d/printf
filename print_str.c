@@ -1,26 +1,21 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdlib.h>
 
 /**
- * print_str - prints a string
- * @args: a va_list of arguments containing a single
- * string to be printed
+ * print_string - check code
+ * @va: variadic list
  *
- * Return: the number of characters printed (in this case,
- * always 1)
+ * Return: string length
  */
-int print_str(va_list args)
+int print_string(va_list va)
 {
 	char *str;
-	int str_length;
+	int len = 0;
 
-	str = va_arg(args, char *);
-	if (str == NULL)
-		str = "(null)";
-
-	for (str_length = 0; str[str_length] != '\0'; str_length++)
-		_putchar(str[str_length]);
-
-	return (str_length);
+	str = va_arg(va, char *);
+	if ((unsigned long)va <= (unsigned long)str)
+		return (-1);
+	str = str == NULL ? "(null)" : str;
+	while (*(str + len) != '\0')
+		len++;
+	return (write(1, str, len));
 }

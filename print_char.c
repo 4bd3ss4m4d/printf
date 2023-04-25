@@ -1,17 +1,19 @@
 #include "main.h"
-#include "stdarg.h"
 
 /**
- * print_char - prints a single character
- * @args: a va_list of arguments containing a single
- * character to be printed
+ * print_char - check code
+ * @va: variadic list
  *
- * Return: the number of characters printed (in this case,
- * always 1)
+ * Return: returns 1
  */
-int print_char(va_list args)
+int print_char(va_list va)
 {
-	_putchar(va_arg(args, int));
+	int x;
+	char c;
 
-	return (1);
+	x = va_arg(va, int);
+	if (x < 0)
+		return (x);
+	c = (char)x;
+	return (write(1, &c, 1));
 }
