@@ -25,6 +25,5 @@ int print_str(va_list args);
 int print_int(va_list args);
 void recur_int(int num);
 int print_int_b(va_list args);
-void recur_int_b(int num);
 
 #endif /* MAIN_H */
