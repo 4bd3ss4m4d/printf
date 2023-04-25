@@ -23,6 +23,7 @@ int print_specifier(char format, va_list args)
 	    {"o", print_octal},
 	    {"x", print_hex},
 	    {"X", print_hex_upper},
+	    {"S", print_custom_str},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)

@@ -29,6 +29,8 @@ int print_uint(va_list args);
 int print_octal(va_list args);
 int print_hex(va_list args);
 int print_hex_upper(va_list args);
+int print_custom_str(va_list args);
+int print_hex_cust(unsigned int num);
 
 #endif /* MAIN_H */
 
