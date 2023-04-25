@@ -30,17 +30,17 @@ int print_pointer(va_list args)
 	a = (unsigned long int)p;
 	_putchar('0');
 	_putchar('x');
-	b = print_HEX(a);
+	b = printf_hex_aux(a);
 	return (b + 2);
 }
 
 /**
- * print_HEX - prints a hexadecimal number
+ * printf_hex_aux - prints a hexadecimal number
  * @num: the number to print
  *
  * Return: the number of digits printed
  */
-int print_HEX(unsigned long int num)
+int printf_hex_aux(unsigned long int num)
 {
 	long int i;
 	long int *array;
