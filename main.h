@@ -16,7 +16,6 @@ typedef struct conversion_specifier
 	int (*func)(va_list);
 } conv_spec;
 
-/* Function prototypes */
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_char(va_list args);
