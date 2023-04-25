@@ -13,14 +13,17 @@
 int print_str(va_list args)
 {
 	char *str;
-	int str_length;
+	int len;
+	char *p;
 
 	str = va_arg(args, char *);
+	len = 0;
+
 	if (str == NULL)
 		str = "(null)";
 
-	for (str_length = 0; str[str_length] != '\0'; str_length++)
-		_putchar(str[str_length]);
+	for (p = str; *p; ++p, ++len)
+		_putchar(*p);
 
-	return (str_length);
+	return (len);
 }
