@@ -1,63 +1,43 @@
 #include "main.h"
-
 /**
- * specifier_selector - check code
- * @format: character specifier
- * @va: variadic list
- * Return: string length
+ * _printf - printf function
+ * @format: const char pointer
+ * Return: b_len
  */
-int specifier_selector(const char *format, va_list va)
+int _printf(const char *format, ...)
 {
-	printer printers[] = {
-	  {"c", print_char},
-	  {"i", print_integer},
-	  {"d", print_integer},
-	  {"R", print_rot13},
-	  {"r", print_reversed_string},
-	  {"b", print_to_binary},
-	  {"o", print_octal},
-	  {"x", print_hexadecimal},
-	  {"X", print_hexadecimal_capitalized},
-	  {"u", print_unsigned_integer},
-	  {"s", print_string},
-	  {"S", print_non_printable},
-	  {"p", print_pointer},
-	  {NULL, NULL}
-	};
-	int j;
+	int (*pfunc)(va_list, flags_t *);
+	const char *p;
+	va_list arguments;
+	flags_t flags = {0, 0, 0};
 
-	j = 0;
-	while (printers[j].print != NULL && *format != *(printers[j].type))
-		j++;
-	return (printers[j].print != NULL ? printers[j].print(va) : -1);
-}
-/**
- * _printf - check code
- * @text: text to display
- * Return: string length
- */
-int _printf(const char *text, ...)
-{
-	int i = 0, r, len = 0, condition = 0;
-	va_list va;
-	char c = '%';
+	register int count = 0;
 
-	va_start(va, text);
-	while (text != NULL && text[i] != '\0')
+	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
 	{
-		if (text[i] == c && condition == 0)
-			condition = 1;
-		else if (condition == 1)
+		if (*p == '%')
 		{
-			r = specifier_selector(text + i, va);
-			len += r < 0 ? write(1, &c, 1)
-			  + (text[i] == c ? 0 : write(1, text + i, 1)) : r;
-			condition = 0;
-		}
-		else
-			len += write(1, text + i, 1);
-		i++;
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*p, &flags))
+				p++;
+			pfunc = get_print(*p);
+			count += (pfunc)
+				? pfunc(arguments, &flags)
+				: _printf("%%%c", *p);
+		} else
+			count += _putchar(*p);
 	}
-	va_end(va);
-	return (text == NULL ? -1 : len);
+	_putchar(-1);
+	va_end(arguments);
+	return (count);
 }
