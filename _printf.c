@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	    {"%c", print_char},
 	    {"%s", print_str},
 	    {"%%", print_prc},
-	    {"\0", NULL}};
+	    {NULL, NULL}};
 	va_list args;
 	unsigned int i, j, valid_specifier_flag, num_chars = 0;
 
