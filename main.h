@@ -4,28 +4,21 @@
 #include <stdarg.h>
 
 /**
- * struct conversion_specifier - struct to hold conversion specifier
- * and its corresponding function
+ * struct conversion_specifier - match the conversion
+ * specifiers for printf
  * @spec: a string representing the conversion specifie
  * @func: a pointer to the function that handles the conversion
  *
- * Description: This struct is used to hold a conversion specifier
- * and a pointer to the function
  */
-struct conversion_specifier
+typedef struct conversion_specifier
 {
 	char *spec;
 	int (*func)(va_list);
-};
-
-/**
- * conv_spec - Typedef for conversion_specifier
- */
-typedef struct conversion_specifier conv_spec;
+} conv_spec;
 
 /* Function prototypes */
-int _putchar(char c);
 int _printf(const char *format, ...);
+int _putchar(char c);
 int print_char(va_list args);
 int print_str(va_list args);
 int print_prc(va_list args);
