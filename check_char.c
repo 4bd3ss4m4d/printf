@@ -7,7 +7,13 @@
 int check_char(char type)
 {
 	int i;
-	char types[] = {'c', 's', '%'};
+	char types[] = {
+	    'c',
+	    's',
+	    '%',
+	    'd',
+	    'i',
+	};
 
 	int types_length = sizeof(types) / sizeof(char);
 
