@@ -19,6 +19,10 @@ int print_specifier(char format, va_list args)
 	    {"d", print_int},
 	    {"i", print_int},
 	    {"b", print_int_b},
+	    {"u", print_uint},
+	    {"o", print_octal},
+	    {"x", print_hex},
+	    {"X", print_hex_upper},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)
