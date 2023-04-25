@@ -1,6 +1,5 @@
 #ifndef MAIN_H
 #define MAIN_H
-
 #include <stdarg.h>
 
 /**
@@ -8,7 +7,6 @@
  * specifiers for printf
  * @spec: a string representing the conversion specifie
  * @func: a pointer to the function that handles the conversion
- *
  */
 typedef struct conversion_specifier
 {
@@ -16,11 +14,13 @@ typedef struct conversion_specifier
 	int (*func)(va_list);
 } conv_spec;
 
-/* Function prototypes */
 int _printf(const char *format, ...);
+int print_format(const char *format, va_list args);
 int _putchar(char c);
+int check_char(char type);
+int print_inv_spec(char prev_format, char format, int count);
+int print_specifier(char format, va_list args);
 int print_char(va_list args);
 int print_str(va_list args);
-int print_prc(va_list args);
 
 #endif /* MAIN_H */
