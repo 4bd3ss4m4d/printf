@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 /**
- * print_pointer - prints the address of a pointer in hexadecimal format
+ * print_pointer - prints the address of a pointer
+ * in hexadecimal format
  * @args: the argument containing the pointer to print
  *
  * Return: the number of characters printed
@@ -39,7 +40,7 @@ int print_pointer(va_list args)
  *
  * Return: the number of digits printed
  */
-int print_HEX(unsigned int num)
+int print_HEX(unsigned long int num)
 {
 	long int i;
 	long int *array;
