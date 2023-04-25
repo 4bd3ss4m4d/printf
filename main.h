@@ -33,6 +33,8 @@ int print_custom_str(va_list args);
 int print_hex_cust(unsigned int num);
 int print_pointer(va_list args);
 int hex_caster(unsigned long n);
+int print_revstr(va_list args);
+int print_rot13(va_list args);
 
 #endif /* MAIN_H */
 

@@ -25,6 +25,8 @@ int print_specifier(char format, va_list args)
 	    {"X", print_hex_upper},
 	    {"S", print_custom_str},
 	    {"p", print_pointer},
+	    {"r", print_revstr},
+	    {"R", print_rot13},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)
