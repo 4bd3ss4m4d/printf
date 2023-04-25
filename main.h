@@ -24,10 +24,7 @@ int print_char(va_list args);
 int print_str(va_list args);
 int print_int(va_list args);
 void recur_int(int num);
-<<<<<<< HEAD
 int print_int_b(va_list args);
 void recur_int_b(int num);
-=======
->>>>>>> 2c09de171286a27a75ca5da23ce9952adfb46dd1
 
 #endif /* MAIN_H */
