@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 /**
  * _printf - produces output according to a format
@@ -9,36 +10,42 @@
  *
  * Return: the number of characters printed
  */
-int _printf(const char *format, ...)
+int _printf(const char *const format, ...)
 {
-	conv_spec convarr[] = {
-	    {"%c", print_char},
+	conv_spec conv_ar[] = {
 	    {"%s", print_str},
+	    {"%c", print_char},
 	    {"%%", print_prc},
 	    {NULL, NULL}};
+
 	va_list args;
-	unsigned int i, j, valid_specifier_flag, num_chars = 0;
+	int i = 0, j, len = 0;
+	bool valid_format_specifier = false;
+
+	va_start(args, format);
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		valid_specifier_flag = 0;
-		for (j = 0; convarr[j].spec != NULL; j++)
+		valid_format_specifier = false;
+		for (j = 0; conv_ar[j].spec != NULL; j++)
 		{
-			if (format[i] == convarr[j].spec[0] && format[i + 1] == convarr[j].spec[1])
+			if (format[i] == conv_ar[j].spec[0] && format[i + 1] == conv_ar[j].spec[1])
 			{
-				num_chars += convarr[j].func(args);
-				valid_specifier_flag = 1;
+				len += conv_ar[j].func(args);
+				valid_format_specifier = true;
 				i++;
 				break;
 			}
 		}
-		if (!valid_specifier_flag)
-			num_chars += _putchar(format[i]);
+		if (!valid_format_specifier)
+		{
+			_putchar(format[i]);
+			len++;
+		}
 	}
 	va_end(args);
-	return (num_chars);
+	return (len);
 }
