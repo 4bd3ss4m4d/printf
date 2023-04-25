@@ -13,6 +13,7 @@ int check_char(char type)
 	    '%',
 	    'd',
 	    'i',
+	    'b',
 	};
 
 	int types_length = sizeof(types) / sizeof(char);

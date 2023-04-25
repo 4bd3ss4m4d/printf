@@ -22,5 +22,9 @@ int print_inv_spec(char prev_format, char format, int count);
 int print_specifier(char format, va_list args);
 int print_char(va_list args);
 int print_str(va_list args);
+int print_int(va_list args);
+void recur_int(int num);
+int print_int_b(va_list args);
+void recur_int_b(int num);
 
 #endif /* MAIN_H */

@@ -18,6 +18,7 @@ int print_specifier(char format, va_list args)
 	    {"s", print_str},
 	    {"d", print_int},
 	    {"i", print_int},
+	    {"b", print_int_b},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)
