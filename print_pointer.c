@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * print_pointer - prints the address of a pointer
@@ -11,61 +12,28 @@
  */
 int print_pointer(va_list args)
 {
-	void *p;
-	char *s = "(nil)";
-	long int a;
-	int b;
-	int i;
+	void *pointer = va_arg(args, void *);
+	unsigned long x = (unsigned long)pointer;
 
-	p = va_arg(args, void *);
-	if (p == NULL)
-	{
-		for (i = 0; s[i] != '\0'; i++)
-		{
-			_putchar(s[i]);
-		}
-		return (i);
-	}
-
-	a = (unsigned long int)p;
-	_putchar('0');
-	_putchar('x');
-	b = printf_hex_aux(a);
-	return (b + 2);
+	if (pointer == NULL)
+		return (write(1, "(nil)", 5));
+	write(1, "0x", 2);
+	return (2 + hex_caster(x));
 }
 
 /**
- * printf_hex_aux - prints a hexadecimal number
- * @num: the number to print
+ * hex_caster - cast an integer to hexadecimal
+ * @n: number to print
  *
- * Return: the number of digits printed
+ * Return: string length
  */
-int printf_hex_aux(unsigned long int num)
+int hex_caster(unsigned long n)
 {
-	long int i;
-	long int *array;
-	long int counter = 0;
-	unsigned long int temp = num;
+	char c;
 
-	while (num / 16 != 0)
-	{
-		num /= 16;
-		counter++;
-	}
-	counter++;
-	array = malloc(counter * sizeof(long int));
+	if (n >= 16)
+		return (hex_caster(n / 16) + hex_caster(n % 16));
+	c = n <= 9 ? '0' + n : 'a' + n - 10;
 
-	for (i = 0; i < counter; i++)
-	{
-		array[i] = temp % 16;
-		temp /= 16;
-	}
-	for (i = counter - 1; i >= 0; i--)
-	{
-		if (array[i] > 9)
-			array[i] = array[i] + 39;
-		_putchar(array[i] + '0');
-	}
-	free(array);
-	return (counter);
+	return (_putchar(c));
 }
