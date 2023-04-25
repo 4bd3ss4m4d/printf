@@ -31,6 +31,7 @@ int print_hex(va_list args);
 int print_hex_upper(va_list args);
 int print_custom_str(va_list args);
 int print_hex_cust(unsigned int num);
+int print_pointer(va_list args);
+int print_HEX(unsigned int num);
 
 #endif /* MAIN_H */
-

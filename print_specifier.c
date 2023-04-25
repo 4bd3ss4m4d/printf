@@ -24,6 +24,7 @@ int print_specifier(char format, va_list args)
 	    {"x", print_hex},
 	    {"X", print_hex_upper},
 	    {"S", print_custom_str},
+	    {"p", print_pointer},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)
