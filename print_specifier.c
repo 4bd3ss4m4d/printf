@@ -16,6 +16,8 @@ int print_specifier(char format, va_list args)
 	conv_spec conversions[] = {
 	    {"c", print_char},
 	    {"s", print_str},
+	    {"d", print_int},
+	    {"i", print_int},
 	    {NULL, NULL}};
 
 	while (conversions[i].spec)
